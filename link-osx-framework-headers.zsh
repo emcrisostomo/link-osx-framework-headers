@@ -7,12 +7,8 @@ if (( $# > 0 ))
 then
   frameworks=( $@ )
 else
-  print -- Argument missing.
-  print
-
   for framework_root in ${framework_roots}
   do
-    print $framework_root
     fmw=( ${framework_root}/*.framework(N) )
 
     for f in $fmw
