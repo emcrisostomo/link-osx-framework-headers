@@ -1,0 +1,10 @@
+ChangeLog
+*********
+
+2014-02-10  Enrico M. Crisostomo  <enrico.m.crisostomo@gmail.com>
+
+        release: stable major release 1.0.0.
+
+	* configure.ac: create initial configuration.
+	* Makefile.am: create initial makefile.
+	* link-osx-framework-headers.zsh: create initial script.

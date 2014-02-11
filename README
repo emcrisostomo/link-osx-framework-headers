@@ -1,0 +1,90 @@
+README
+******
+
+This is link-osx-framework-headers.zsh, a ZSH shell scripts that scans the
+framework directories of OS X and:
+
+  * Creates a symbolic link to a framework headers' directory.
+  * Creates a symbolic link to the headers' directory of every sub-framework
+    of a framework.
+
+  All the symbolic links are created in the script working directory (usually
+the directory from which the script is invoked).  "Flattening" the framework
+hierarchy is required so that C/C++ IDEs that do not understand (yet) the
+layout of Apple frameworks are able to scan the framework hedear files
+correctly.  Current versions of NetBeans C++ and Eclipse CDT are affected
+by this problem.
+
+  This script is a ZSH shell script which should work out of the box on any
+recent OS X release.
+
+Installation
+============
+
+See the INSTALL file for detailed information about how to configure and install
+fsw.
+
+  link-osx-framework-headers.zsh is a Z shell script and ZSH is required to
+execute it.  The configure script checks for ZSH and fails if absent.  Since
+the Z Shell is shipped with every recent OS X release, this bundle shuold be
+self-contained.
+
+  No other software packages or dependencies are required to configure and
+install fsw.
+
+Usage
+=====
+
+link-osx-framework-headers.zsh accepts a list of framework names.  A framework
+name does not contain the ".framework" suffix.  That is:
+
+  * CoreServices is a valid framework name.
+  * CoreServices.framework is not a valid framework name.
+
+  The basic syntax is:
+
+  $ link-osx-framework-headers.zsh framework-0 ... framework-n
+
+The script will loop on the specified framework names and will process them one
+by one.  The script will scan the OS X framework base directories (in this
+order), which currently are:
+
+  * /System/Library/Frameworks
+  * /Library/Frameworks
+
+looking for a framework directory (named "framework-name.framework").  If such
+a directory is found, the script will:
+
+  * Check whether a Headers directory exists and if it does, create a symbolic
+    link in the current directory named after the framework (without the
+    .framework suffix).
+  * Check whether sub-framework exists.  A sub-framework is a directory whose
+    name ends with ".framework".  For each such directory, repeat the process.
+
+  If a corresponding framework directory is not found, a warning is issued to
+the standard error and the script will continue with the next framework name.
+
+  If the script is invoked with no arguments, it will dump the paths of the
+frameworks founds on the configured framework root directories. 
+
+Bug Reports
+===========
+
+Bug reports can be sent directly to the authors.
+
+-----
+
+Copyright (C) 2014 Enrico M. Crisostomo
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 3, or (at your option)
+any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
