@@ -21,10 +21,30 @@ recent OS X release.
 Installation
 ============
 
-See the INSTALL file for detailed information about how to configure and install
+The quickest way to install this package is:
+
+  * Configuration and build:
+
+    $ ./configure && make
+
+  * Installation:
+
+    $ sudo make install
+
+    or
+
+    # make install
+
+    if you have sufficient privileges to write into the directory tree rooted
+in /usr/local.
+
+  See the INSTALL file for detailed information about how to configure and install
 fsw.
 
-  link-osx-framework-headers.zsh is a Z shell script and ZSH is required to
+Dependencies
+============
+
+link-osx-framework-headers.zsh is a Z shell script and ZSH is required to
 execute it.  The configure script checks for ZSH and fails if absent.  Since
 the Z Shell is shipped with every recent OS X release, this bundle shuold be
 self-contained.
