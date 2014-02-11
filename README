@@ -1,7 +1,7 @@
 README
 ******
 
-This is link-osx-framework-headers.zsh, a ZSH shell scripts that scans the
+This is link-osx-framework-headers.zsh, a ZSH shell script that scans the
 framework directories of OS X and:
 
   * Creates a symbolic link to a framework headers' directory.
@@ -14,6 +14,11 @@ hierarchy is required so that C/C++ IDEs that do not understand (yet) the
 layout of Apple frameworks are able to scan the framework hedear files
 correctly.  Current versions of NetBeans C++ and Eclipse CDT are affected
 by this problem.
+
+  Further information about this problem, how this script can help you solve it
+and how to properly configure such an IDE can be found in this blog post:
+
+http://thegreyblog.blogspot.com/2014/02/how-to-include-apple-frameworks-headers.html
 
   This script is a ZSH shell script which should work out of the box on any
 recent OS X release.
