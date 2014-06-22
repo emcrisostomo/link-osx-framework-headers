@@ -1,81 +1,81 @@
 README
-******
+======
 
-This is link-osx-framework-headers.zsh, a ZSH shell script that scans the
+This is `link-osx-framework-headers.zsh`, a ZSH shell script that scans the
 framework directories of OS X and:
 
   * Creates a symbolic link to a framework headers' directory.
   * Creates a symbolic link to the headers' directory of every sub-framework
     of a framework.
 
-  All the symbolic links are created in the script working directory (usually
+All the symbolic links are created in the script working directory (usually
 the directory from which the script is invoked).  "Flattening" the framework
 hierarchy is required so that C/C++ IDEs that do not understand (yet) the
 layout of Apple frameworks are able to scan the framework hedear files
 correctly.  Current versions of NetBeans C++ and Eclipse CDT are affected
 by this problem.
 
-  Further information about this problem, how this script can help you solve it
-and how to properly configure such an IDE can be found in this blog post:
+Further information about this problem, how this script can help you solve it
+and how to properly configure such an IDE can be found [in this blog post][b].
 
-http://thegreyblog.blogspot.com/2014/02/how-to-include-apple-frameworks-headers.html
+[b]: http://thegreyblog.blogspot.com/2014/02/how-to-include-apple-frameworks-headers.html
 
-  This script is a ZSH shell script which should work out of the box on any
+This script is a ZSH shell script which should work out of the box on any
 recent OS X release.
 
 Installation
-============
+------------
 
 The quickest way to install this package is:
 
   * Configuration and build:
 
-    $ ./configure && make
+        $ ./configure && make
 
   * Installation:
 
-    $ sudo make install
+        $ sudo make install
 
     or
 
-    # make install
+        # make install
 
     if you have sufficient privileges to write into the directory tree rooted
-in /usr/local.
+in `/usr/local`.
 
-  See the INSTALL file for detailed information about how to configure and install
+See the INSTALL file for detailed information about how to configure and install
 fsw.
 
 Dependencies
-============
+------------
 
-link-osx-framework-headers.zsh is a Z shell script and ZSH is required to
+`link-osx-framework-headers.zsh` is a Z shell script and ZSH is required to
 execute it.  The configure script checks for ZSH and fails if absent.  Since
 the Z Shell is shipped with every recent OS X release, this bundle shuold be
 self-contained.
 
-  No other software packages or dependencies are required to configure and
-install fsw.
+No other software packages or dependencies are required to configure and
+install this script.
 
 Usage
-=====
+-----
 
-link-osx-framework-headers.zsh accepts a list of framework names.  A framework
+`link-osx-framework-headers.zsh` accepts a list of framework names.  A framework
 name does not contain the ".framework" suffix.  That is:
 
-  * CoreServices is a valid framework name.
-  * CoreServices.framework is not a valid framework name.
+  * _CoreServices_ is a valid framework name.
+  * _CoreServices.framework_ is not a valid framework name.
 
-  The basic syntax is:
+The basic syntax is:
 
-  $ link-osx-framework-headers.zsh framework-0 ... framework-n
+    $ link-osx-framework-headers.zsh framework-0 ... framework-n
 
 The script will loop on the specified framework names and will process them one
 by one.  The script will scan the OS X framework base directories (in this
 order), which currently are:
 
-  * /System/Library/Frameworks
-  * /Library/Frameworks
+  * `/System/Library/Frameworks`
+  * `/Library/Frameworks`
 
 looking for a framework directory (named "framework-name.framework").  If such
 a directory is found, the script will:
@@ -86,14 +86,14 @@ a directory is found, the script will:
   * Check whether sub-framework exists.  A sub-framework is a directory whose
     name ends with ".framework".  For each such directory, repeat the process.
 
-  If a corresponding framework directory is not found, a warning is issued to
+If a corresponding framework directory is not found, a warning is issued to
 the standard error and the script will continue with the next framework name.
 
-  If the script is invoked with no arguments, it will dump the paths of the
+If the script is invoked with no arguments, it will dump the paths of the
 frameworks founds on the configured framework root directories. 
 
 Bug Reports
-===========
+-----------
 
 Bug reports can be sent directly to the authors.
 
